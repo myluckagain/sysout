@@ -1,0 +1,26 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="dogstatic" scope="singleton" class="ru.javalang.factorymethod.Animal"
+		factory-method="getAnimal">
+		<constructor-arg index="0" value="dog" />
+	</bean>
+
+	<bean id="duckstatic" scope="prototype" class="ru.javalang.factorymethod.Animal"
+		factory-method="getAnimal">
+		<constructor-arg index="0" value="duck" />
+	</bean>
+
+	<bean id="animalFactory" class="ru.javalang.factorymethod.AnimalFactory" />
+	<bean id="doginstance" scope="singleton" factory-bean="animalFactory"
+		factory-method="getAnimal">
+		<constructor-arg index="0" value="dog" />
+	</bean>
+	<bean id="duckinstance" scope="prototype" factory-bean="animalFactory"
+		factory-method="getAnimal">
+		<constructor-arg index="0" value="duck" />
+	</bean>
+</beans>
