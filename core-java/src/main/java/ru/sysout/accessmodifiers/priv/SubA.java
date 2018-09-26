@@ -1,4 +1,4 @@
-package ru.sysout.accessmodifiers.a;
+package ru.sysout.accessmodifiers.priv;
 
 public class SubA extends A {
     private void privateMethod() {

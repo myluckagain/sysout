@@ -1,4 +1,4 @@
-package ru.sysout.accessmodifiers.a;
+package ru.sysout.accessmodifiers.priv;
 
 public class B {
     void testAccess() {

@@ -1,6 +1,6 @@
-package ru.sysout.accessmodifiers.a;
+package ru.sysout.accessmodifiers.priv;
 
-import ru.sysout.accessmodifiers.a.A;
+import ru.sysout.accessmodifiers.priv.A;
 
 public class A {
     private int privateVar = 1;
