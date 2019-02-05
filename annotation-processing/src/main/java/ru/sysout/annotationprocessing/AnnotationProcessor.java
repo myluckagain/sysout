@@ -1,24 +1,26 @@
 package ru.sysout.annotationprocessing;
 
+import com.google.auto.service.AutoService;
+
+import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.Processor;
+import javax.annotation.processing.RoundEnvironment;
+import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
+import javax.tools.Diagnostic;
+import javax.tools.JavaFileObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import javax.annotation.processing.*;
-import javax.lang.model.SourceVersion;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.ExecutableType;
-import javax.tools.Diagnostic;
-import javax.tools.JavaFileObject;
 
-import com.google.auto.service.AutoService;
 @SupportedAnnotationTypes("ru.sysout.annotationprocessing.ToString")
-@SupportedSourceVersion(SourceVersion.RELEASE_11)
 @AutoService(Processor.class)
-public class AnnotationProcessor  extends AbstractProcessor {
+public class AnnotationProcessor extends AbstractProcessor {
+
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
@@ -39,10 +41,9 @@ public class AnnotationProcessor  extends AbstractProcessor {
 
             String className = ((TypeElement) getters.get(0).getEnclosingElement()).getQualifiedName().toString();
 
-            Map<String, String> setterMap = getters.stream().collect(Collectors.toMap(setter -> setter.getSimpleName().toString(), setter -> ((ExecutableType) setter.asType()).getReturnType().toString()));
-
+            List<String> stringGetters = getters.stream().map(getter -> getter.getSimpleName().toString()).collect(Collectors.toList());
             try {
-                writeBuilderFile(className, setterMap);
+                writeBuilderFile(className, stringGetters);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -52,7 +53,7 @@ public class AnnotationProcessor  extends AbstractProcessor {
         return true;
     }
 
-    private void writeBuilderFile(String className, Map<String, String> setterMap) throws IOException {
+    private void writeBuilderFile(String className, List<String> getters) throws IOException {
 
         String packageName = null;
         int lastDot = className.lastIndexOf('.');
@@ -62,7 +63,6 @@ public class AnnotationProcessor  extends AbstractProcessor {
 
         String simpleClassName = className.substring(lastDot + 1);
         String toStringsClassName = "ToStrings";
-      //  String builderSimpleClassName = builderClassName.substring(lastDot + 1);
 
         JavaFileObject builderFile = processingEnv.getFiler().createSourceFile(toStringsClassName);
         try (PrintWriter out = new PrintWriter(builderFile.openWriter())) {
@@ -83,8 +83,8 @@ public class AnnotationProcessor  extends AbstractProcessor {
             out.println();
             out.print(" return ");
 
-            String result = setterMap.keySet().stream().map(m->"cat."+m+"()").collect(Collectors.joining("+\",\"+"));
-            out.println(result+";");
+            String result = getters.stream().map(m -> "cat." + m + "()").collect(Collectors.joining("+\",\"+"));
+            out.println(result + ";");
 
             out.println("    }");
             out.println("}");
