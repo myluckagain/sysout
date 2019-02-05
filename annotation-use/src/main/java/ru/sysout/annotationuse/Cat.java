@@ -1,4 +1,4 @@
-package ru.sysout.annotuser;
+package ru.sysout.annotationuse;
 
 import ru.sysout.annotationprocessing.ToString;
 

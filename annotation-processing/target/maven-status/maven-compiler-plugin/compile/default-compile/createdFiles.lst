@@ -1,0 +1,3 @@
+ru\sysout\annotationprocessing\ToString.class
+META-INF\services\javax.annotation.processing.Processor
+ru\sysout\annotationprocessing\AnnotationProcessor.class

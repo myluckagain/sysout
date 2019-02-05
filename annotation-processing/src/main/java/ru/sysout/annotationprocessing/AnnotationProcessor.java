@@ -28,18 +28,18 @@ public class AnnotationProcessor  extends AbstractProcessor {
 
             Map<Boolean, List<Element>> annotatedMethods = annotatedElements.stream().collect(Collectors.partitioningBy(element -> element.getSimpleName().toString().startsWith("get")));
 
-            List<Element> setters = annotatedMethods.get(true);
+            List<Element> getters = annotatedMethods.get(true);
             List<Element> otherMethods = annotatedMethods.get(false);
 
             otherMethods.forEach(element -> processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "@ToString must be applied to a getXxx method", element));
 
-            if (setters.isEmpty()) {
+            if (getters.isEmpty()) {
                 continue;
             }
 
-            String className = ((TypeElement) setters.get(0).getEnclosingElement()).getQualifiedName().toString();
+            String className = ((TypeElement) getters.get(0).getEnclosingElement()).getQualifiedName().toString();
 
-            Map<String, String> setterMap = setters.stream().collect(Collectors.toMap(setter -> setter.getSimpleName().toString(), setter -> ((ExecutableType) setter.asType()).getReturnType().toString()));
+            Map<String, String> setterMap = getters.stream().collect(Collectors.toMap(setter -> setter.getSimpleName().toString(), setter -> ((ExecutableType) setter.asType()).getReturnType().toString()));
 
             try {
                 writeBuilderFile(className, setterMap);

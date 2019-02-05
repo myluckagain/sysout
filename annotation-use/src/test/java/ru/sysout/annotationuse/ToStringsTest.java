@@ -1,9 +1,8 @@
-package ru.sysout.annotuser;
+package ru.sysout.annotationuse;
 
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import ru.sysout.annotuser.ToStrings;
 
 public class ToStringsTest {
     @Test
