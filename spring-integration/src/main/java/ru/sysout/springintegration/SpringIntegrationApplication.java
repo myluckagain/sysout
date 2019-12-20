@@ -8,7 +8,6 @@ import org.springframework.integration.annotation.Gateway;
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.dsl.IntegrationFlow;
-
 import ru.sysout.springintegration.model.Animal;
 
 @SpringBootApplication
@@ -21,14 +20,14 @@ public class SpringIntegrationApplication {
     @MessagingGateway
     public interface I {
 
-        @Gateway(requestChannel = "personFlow.input")
+        @Gateway(requestChannel = "animalFlow.input")
         void process(Animal animal);
 
     }
 
-    // канал DirectChannel с именем personFlow.input создается автоматически
+    // канал DirectChannel с именем animalFlow.input создается автоматически
     @Bean
-    public IntegrationFlow personFlow() {
+    public IntegrationFlow animalFlow() {
         return flow -> flow.handle("aService", "process")
             .handle("bService", "process")
             .handle("cService", "process")
@@ -40,13 +39,13 @@ public class SpringIntegrationApplication {
         ConfigurableApplicationContext ctx = SpringApplication.run(SpringIntegrationApplication.class, args);
 
         DirectChannel outputChannel = ctx.getBean("outputChannel", DirectChannel.class);
-        // обработчик внутри subscribe выполнится как только занокнчится выполнение flow
+        // обработчик внутри subscribe выполнится как только закончится выполнение flow
         outputChannel.subscribe(x -> System.out.println(x));
         // запускаем выполнение flow
         ctx.getBean(I.class).process(new Animal("cat"));
 
         // можно было запустить flow отправкой сообщения во входной канал input:
-        // MessageChannel inputChannel = ctx.getBean("personFlow.input", MessageChannel.class);
+        // MessageChannel inputChannel = ctx.getBean("animalFlow.input", MessageChannel.class);
         // inputChannel.send(MessageBuilder.withPayload(new Animal("cat")).build());
         ctx.close();
     }

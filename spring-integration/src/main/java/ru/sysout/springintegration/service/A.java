@@ -1,9 +1,9 @@
 package ru.sysout.springintegration.service;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.sysout.springintegration.model.Animal;
 
-@Component("aService")
+@Service("aService")
 public class A {
 
     public Animal process(Animal animal) {
