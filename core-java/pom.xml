@@ -5,17 +5,26 @@
 	<groupId>ru.sysout</groupId>
 	<artifactId>core-java</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>hamcrest</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<junit.version>4.12</junit.version>
+		<hamcrest.version>1.3</hamcrest.version>
+	</properties>
 
-	<parent>
-		<groupId>ru.sysout</groupId>
-		<artifactId>parent-modules</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
 	<dependencies>
-
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>${hamcrest.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-
-
-
 </project>
