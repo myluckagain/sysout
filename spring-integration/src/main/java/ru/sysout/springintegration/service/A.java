@@ -7,7 +7,7 @@ import ru.sysout.springintegration.model.Animal;
 public class A {
 
     public Animal process(Animal animal) {
-        System.out.println("A is processing animal");
+        System.out.println("A is processing animal: " + animal.getName());
         return animal;
     }
 }
