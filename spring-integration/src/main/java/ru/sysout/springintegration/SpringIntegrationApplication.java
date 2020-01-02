@@ -22,25 +22,23 @@ public class SpringIntegrationApplication {
 
         @Gateway(requestChannel = "animalFlow.input")
         void process(Animal animal);
-
     }
 
     // канал DirectChannel с именем animalFlow.input создается автоматически
     @Bean
     public IntegrationFlow animalFlow() {
         return flow -> flow.handle("aService", "process")
-            .handle("bService", "process")
-            .handle("cService", "process")
-            .channel("outputChannel");
+                .handle("bService", "process")
+                .handle("cService", "process")
+                .channel("outputChannel");
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringIntegrationApplication.class, args);
         ConfigurableApplicationContext ctx = SpringApplication.run(SpringIntegrationApplication.class, args);
 
         DirectChannel outputChannel = ctx.getBean("outputChannel", DirectChannel.class);
         // обработчик внутри subscribe выполнится как только закончится выполнение flow
-        outputChannel.subscribe(x -> System.out.println(x));
+        outputChannel.subscribe(System.out::println);
         // запускаем выполнение flow
         ctx.getBean(I.class).process(new Animal("cat"));
 
