@@ -20,4 +20,5 @@ public class HelloController {
     public String admin() {
         return "Admin";
     }
+
 }
