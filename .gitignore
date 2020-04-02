@@ -1,6 +1,10 @@
-*/target/
+/target/
 !.mvn/wrapper/maven-wrapper.jar
-/.metadata/
+
+### MAVEN ###
+/.mvn
+mvnw
+
 ### STS ###
 .apt_generated
 .classpath
