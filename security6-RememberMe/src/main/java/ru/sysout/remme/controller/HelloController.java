@@ -1,5 +1,4 @@
-package ru.sysout.sec6.controller;
-
+package ru.sysout.remme.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

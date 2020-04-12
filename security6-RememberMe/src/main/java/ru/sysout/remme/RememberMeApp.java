@@ -1,13 +1,13 @@
-package ru.sysout.sec6;
+package ru.sysout.remme;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Security5 {
+public class RememberMeApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Security5.class, args);
+		SpringApplication.run(RememberMeApp.class, args);
 	}
 
 }
