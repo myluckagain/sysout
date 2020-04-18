@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+      show-sql: true
+  datasource:
+    initialization-mode: always
+jwt:
+  sessionTime: 1200000000
+  secret: secret_key
