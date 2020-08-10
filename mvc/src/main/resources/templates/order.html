@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+    <title>Заказы</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+<div class="row">
+    <a href="/">Главная</a>
+</div>
+<h1>Заказы</h1>
+<form id="add-form" th:action="@{/order}" th:method="post">
+    <div class="row">
+        <label>Телефон:&nbsp;</label>
+        <input type="tel" th:value="${phone}" name="phone"></input>
+    </div>
+
+    <div class="row">
+        <button type="submit">Заказать</button>
+    </div>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Дата заказа</th>
+        <th>Телефон</th>
+        <th>Кол-во животных</th>
+    </tr>
+    </thead>
+    <tbody th:each="order : ${orders}">
+    <tr>
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.date.toLocaleString()}"></td>
+        <td th:text="${order.phone}"></td>
+        <td th:text="${order.animals.size()}">></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+
+
+</body>
+</html>

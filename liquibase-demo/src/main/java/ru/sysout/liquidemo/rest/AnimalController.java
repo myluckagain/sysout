@@ -1,12 +1,12 @@
-package ru.sysout.liqdemo.rest;
+package ru.sysout.liquidemo.rest;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ru.sysout.liqdemo.dao.AnimalRepository;
-import ru.sysout.liqdemo.model.Animal;
+import ru.sysout.liquidemo.dao.AnimalRepository;
+import ru.sysout.liquidemo.model.Animal;
 
 import java.util.List;
 

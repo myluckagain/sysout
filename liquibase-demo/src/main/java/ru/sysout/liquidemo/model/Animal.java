@@ -1,4 +1,4 @@
-package ru.sysout.liqdemo.model;
+package ru.sysout.liquidemo.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
