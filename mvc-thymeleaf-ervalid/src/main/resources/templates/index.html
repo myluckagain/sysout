@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Корзина животных</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+<h1>Животные:</h1>
+<form th:action="@{/}" th:object="${animal}" th:method="post">
+    <div>
+        <label><label/>Название</label>
+        <input type="text" th:field="*{name}"/>
+        <div th:errors="*{name}" class="error"/>
+
+    </div>
+    <div>
+        <button type="submit">Добавить в корзину</button>
+    </div>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Животное</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="animal, iterStat : ${animals}"
+        th:style="${iterStat.odd}? 'font-weight: bold;'">
+        <td th:text="${iterStat.index}+1"></td>
+        <td th:text="${animal.name}"></td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<br/>
+<div>
+    <a href="/order" class="button">Заказать</a>
+</div>
+
+</body>
+</html>
