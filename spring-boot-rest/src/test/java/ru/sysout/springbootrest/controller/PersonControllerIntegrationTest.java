@@ -37,7 +37,6 @@ public class PersonControllerIntegrationTest {
 	@After
 	public void resetDb() {
 		repository.deleteAll();
-		repository.flush();
 	}
 
 	@Test
