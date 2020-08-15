@@ -1,8 +1,9 @@
 package ru.sysout.springbootrest.controller;
 
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import ru.sysout.springbootrest.dao.PersonRepository;
@@ -24,7 +26,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.List;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 
 public class PersonControllerIntegrationTest {
@@ -34,7 +36,7 @@ public class PersonControllerIntegrationTest {
 	@Autowired
 	private PersonRepository repository;
 
-	@After
+	@AfterEach
 	public void resetDb() {
 		repository.deleteAll();
 	}
@@ -77,8 +79,12 @@ public class PersonControllerIntegrationTest {
 	@Test
 	public void givenPerson_whenDeletePerson_thenStatus200() {
 
-		createTestPerson("Nick");
-		restTemplate.delete("/persons/{id}", 1);
+		long id = createTestPerson("Nick").getId();
+		ResponseEntity<Person> response = restTemplate.exchange("/persons/{id}", HttpMethod.DELETE, null, Person.class,
+				id);
+		assertThat(response.getStatusCode(), is(HttpStatus.OK));
+		assertThat(response.getBody().getId(), is(id));
+		assertThat(response.getBody().getName(), is("Nick"));
 
 	}
 
@@ -96,7 +102,7 @@ public class PersonControllerIntegrationTest {
 
 	private Person createTestPerson(String name) {
 		Person emp = new Person(name);
-		return repository.saveAndFlush(emp);
+		return repository.save(emp);
 	}
 
 }
