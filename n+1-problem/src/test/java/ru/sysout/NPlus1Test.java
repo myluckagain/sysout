@@ -49,4 +49,12 @@ public class NPlus1Test {
             comments.forEach(comment -> System.out.println(comment.getText() + " " + comment.getTopic().getTitle()));
         });
     }
+
+    @Test
+    @DisplayName("")
+    public void whenFind_Then() {
+        HibernateUtil.doInHibernate(session -> {
+            session.find(Comment.class, 1l);
+        });
+    }
 }
