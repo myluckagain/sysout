@@ -1,9 +1,7 @@
 package ru.sysout;
 
 import org.hibernate.annotations.QueryHints;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import ru.sysout.model.Image;
 import ru.sysout.model.Post;
 
@@ -75,4 +73,19 @@ public class CartesianProblemTest {
         });
     }
 
+    @Test
+    @DisplayName("если поставить org.hibernate.annotations.FetchMode.SUBSELECT, и сделать обычный select, то тоже пофиксим проблему")
+    public void givenSubselect_whenSimpleSelect_thenOk() {
+        List<Post> returnedPosts = HibernateUtil.doInHibernate(session -> {
+            List<Post> posts = session.createQuery("select p from Post p", Post.class).getResultList();
+            //достаточно обратиться к коллекциям одного элемента, чтобы заполнились коллекции всех элементов
+            System.out.println(posts.get(0));
+            return posts;
+        });
+
+        Assertions.assertEquals(5, returnedPosts.size());
+        returnedPosts.forEach(System.out::println);
+    }
+
 }
+

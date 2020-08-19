@@ -21,4 +21,12 @@ public class Image {
     public Image(String url){
         this.url=url;
     }
+
+    @Override
+    public String toString() {
+        return "Image{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }
