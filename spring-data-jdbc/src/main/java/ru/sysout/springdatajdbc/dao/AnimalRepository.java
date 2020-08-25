@@ -27,7 +27,6 @@ public class AnimalRepository  {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         return jdbc.queryForObject("select * from animal where id=:id", params, new AnimalMapper());
-
     }
 
     @Transactional

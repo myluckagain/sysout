@@ -17,6 +17,12 @@ class AnimalRepositoryTest {
     private AnimalRepository dao;
 
     @Test
+    void givenData_whenGetOne_thenReturnsAnimal() {
+        Animal animal = dao.getById(1l);
+        Assertions.assertEquals("cat", animal.getName());
+    }
+
+    @Test
     void givenData_whenGetAll_thenCountIsTwo() {
         List<Animal> animals = dao.getAll();
         Assertions.assertEquals(2, animals.size());
