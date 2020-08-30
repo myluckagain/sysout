@@ -1,34 +1,28 @@
 package ru.sysout.springdatajdbc.model;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
-public class Account {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String name;
-    private long amount;
+    @OneToMany(mappedBy = "user")
+    private Set<Account> accounts;
 
-    @ManyToOne
-    private User user;
-
-    public Account(long id, String name) {
+    public User(long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Account(String name) {
+    public User(String name) {
         this.name = name;
     }
 }
