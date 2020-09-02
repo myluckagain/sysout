@@ -15,5 +15,6 @@ public class UserDetails {
     private String phone;
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
+    @JoinColumn(name = "id")
     private User user;
 }
