@@ -34,7 +34,7 @@ public class GoodStructureTest {
 
     public void whenDeleteComment_thenDeleteWithUpdate() {
        GoodTopic topic = topicRepository.getOne(-11l);
-       topic.getComments().remove(0);
+       topic.removeComment(topic.getComments().get(0));
 
        Assertions.assertEquals(2, commentRepository.count());
     }
