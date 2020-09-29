@@ -1,0 +1,5 @@
+insert into city(id, name) values(-10, 'name1')
+insert into city(id, name) values(-9, 'name2')
+insert into city(id, name) values(-8, 'name3')
+insert into city(id, name) values(-7, 'name4')
+insert into city(id, name) values(-6, 'name5')

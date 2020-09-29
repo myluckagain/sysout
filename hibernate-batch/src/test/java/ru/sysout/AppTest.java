@@ -1,4 +1,4 @@
-package ru.sysout.springdataentitygraph;
+package ru.sysout;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @SpringBootTest
 @Transactional
-class BatchTest {
+class DtoProjectionTest {
 
     @PersistenceContext
     private EntityManager em;
