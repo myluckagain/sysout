@@ -1,0 +1,5 @@
+insert into income(id, local_date, sum) values(1, '2016-01-01', 123)
+insert into income(id, local_date, sum) values(2, '2017-02-01', 12)
+insert into income(id, local_date, sum) values(3, '2018-01-01', 10)
+insert into income(id, local_date, sum) values(4, '2019-01-01', 100)
+insert into income(id, local_date, sum) values(5, '2019-01-01', 10)
