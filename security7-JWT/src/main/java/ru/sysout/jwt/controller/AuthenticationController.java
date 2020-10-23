@@ -29,7 +29,7 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     @ResponseStatus(HttpStatus.OK)
-    public AuthResponse createAuthenticationToken(@RequestBody AuthRequest authRequest){
+    public AuthResponse createAuthenticationToken(@RequestBody AuthRequest authRequest) {
         Authentication authentication;
         try {
             authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getName(), authRequest.getPassword()));
@@ -37,9 +37,8 @@ public class AuthenticationController {
         } catch (BadCredentialsException e) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Имя или пароль неправильны", e);
         }
-
-        final String jwt = jwtTokenUtil.generateToken((UserDetails) authentication.getPrincipal());
-        System.out.println(jwt);
+        // при создании токена в него кладется username как Subject и список authorities как кастомный claim
+        String jwt = jwtTokenUtil.generateToken((UserDetails) authentication.getPrincipal());
 
         return new AuthResponse(jwt);
     }

@@ -6,5 +6,5 @@ spring:
   datasource:
     initialization-mode: always
 jwt:
-  sessionTime: 1200000000
+  sessionTime: 120000000
   secret: secret_key

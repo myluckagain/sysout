@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class JWTUtil {
@@ -22,31 +23,38 @@ public class JWTUtil {
     @Value("${jwt.sessionTime}")
     private long sessionTime;
 
+    // генерация токена (кладем в него имя пользователя и authorities)
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>();
+        String commaSeparatedListOfAuthorities=  userDetails.getAuthorities().stream().map(a->a.getAuthority()).collect(Collectors.joining(","));
+        claims.put("authorities", commaSeparatedListOfAuthorities);
+        return createToken(claims, userDetails.getUsername());
+    }
 
+    //извлечение имени пользователя из токена (внутри валидация токена)
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public Date extractExpiration(String token) {
-        return extractClaim(token, Claims::getExpiration);
+    //извлечение authorities (внутри валидация токена)
+    public String extractAuthorities(String token) {
+        Function<Claims, String> claimsListFunction = claims -> {
+            return (String)claims.get("authorities");
+        };
+        return extractClaim(token, claimsListFunction);
     }
 
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+
+
+    private  <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
+
     private Claims extractAllClaims(String token) {
         return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
     }
 
-    private Boolean isTokenExpired(String token) {
-        return extractExpiration(token).before(new Date());
-    }
-
-    public String generateToken(UserDetails userDetails) {
-        Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, userDetails.getUsername());
-    }
 
     private String createToken(Map<String, Object> claims, String subject) {
 
@@ -57,12 +65,8 @@ public class JWTUtil {
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
     }
 
-    public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
-    }
 
     private Date expireTimeFromNow() {
-        return new Date(System.currentTimeMillis() + sessionTime );
+        return new Date(System.currentTimeMillis() + sessionTime);
     }
 }
