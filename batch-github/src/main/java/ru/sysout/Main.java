@@ -39,10 +39,6 @@ public class Main implements CommandLineRunner {
         JobParameters jobParameters = new JobParametersBuilder()
                 .addLong("launchTime", System.currentTimeMillis()).toJobParameters();
         jobLauncher.run(job, jobParameters);
-        Thread.sleep(1000);
 
-        jobParameters = new JobParametersBuilder()
-                .addLong("launchTime", System.currentTimeMillis()).toJobParameters();
-        jobLauncher.run(job, jobParameters);
     }
 }

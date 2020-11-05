@@ -38,11 +38,6 @@ public class BatchChunkConfig {
                 .reader(getItemReader())
                 .processor(repoDtoProcessor)
                 .writer(repoDtoWriter)
-                .faultTolerant()
-                .retryLimit(2)
-                .retry(Exception.class)
-                .skipLimit(2)
-                .skip(Exception.class)
                 .build();
     }
 
