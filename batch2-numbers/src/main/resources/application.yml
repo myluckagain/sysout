@@ -1,0 +1,14 @@
+spring:
+  batch:
+    job:
+      enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost/batch2
+    username: postgres
+    password: qqq
+    initialization-mode: always
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
