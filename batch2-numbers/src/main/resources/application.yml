@@ -1,7 +1,8 @@
 spring:
   batch:
     job:
-      enabled: true
+      enabled: false
+
   datasource:
     url: jdbc:postgresql://localhost/batch2
     username: postgres

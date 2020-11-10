@@ -1,4 +1,4 @@
-package ru.sysout;
+package ru.sysout.batch;
 
 
 import org.slf4j.Logger;
@@ -12,15 +12,15 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.support.ListItemReader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import ru.sysout.Number;
+import ru.sysout.NumberRepository;
 
 import java.util.Arrays;
 
 @EnableBatchProcessing
 @Configuration
-@SpringBootApplication
 public class BatchConfig {
     private static final Logger LOGGER= LoggerFactory.getLogger(BatchConfig.class);
     @Autowired
@@ -75,4 +75,6 @@ public class BatchConfig {
             }
         };
     }
+
+
 }
