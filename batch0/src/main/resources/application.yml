@@ -1,0 +1,14 @@
+spring:
+  batch:
+    job:
+      enabled: false
+    initialize-schema: always
+
+  datasource:
+    url: jdbc:postgresql://localhost/batch0
+    username: postgres
+    password: qqq
+
+file:
+  input: src/main/resources/input.csv
+  output: src/main/resources/output.json
