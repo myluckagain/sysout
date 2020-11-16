@@ -1,13 +1,13 @@
-package ru.sysout.sec5;
+package ru.sysout;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Security5 {
+public class Main {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Security5.class, args);
+		SpringApplication.run(Main.class, args);
 	}
 
 }

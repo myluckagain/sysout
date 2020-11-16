@@ -1,4 +1,4 @@
-package ru.sysout.sec5.controller;
+package ru.sysout.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
