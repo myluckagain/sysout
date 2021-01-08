@@ -1,6 +1,5 @@
 package ru.sysout.zoo;
 
-import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,6 @@ public class TicketClient {
 
     }
 
-    @Bulkhead(name = "ticket")
     public ResponseEntity<String> ticket() {
         return restTemplate.getForEntity("http://ticket", String.class);
     }

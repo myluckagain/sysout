@@ -17,8 +17,8 @@ public class RandomAnimalClient {
 
     private final CircuitBreakerFactory circuitBreakerFactory;
 
-    public RandomAnimalClient(RestTemplate restTemplate,
-                              CircuitBreakerFactory circuitBreakerFactory) {
+
+    public RandomAnimalClient(RestTemplate restTemplate, CircuitBreakerFactory circuitBreakerFactory) {
         this.restTemplate = restTemplate;
         this.circuitBreakerFactory = circuitBreakerFactory;
     }
@@ -33,6 +33,7 @@ public class RandomAnimalClient {
     }
 
     public ResponseEntity<Animal> fallbackRandom() {
+
         return ResponseEntity.ok().body(new Animal("no animal"));
     }
 }
