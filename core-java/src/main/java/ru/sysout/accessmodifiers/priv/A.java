@@ -1,7 +1,5 @@
 package ru.sysout.accessmodifiers.priv;
 
-import ru.sysout.accessmodifiers.priv.A;
-
 public class A {
     private int privateVar = 1;
 

@@ -1,14 +1,15 @@
 package ru.sysout.optional;
 
-import java.util.Optional;
-
 import org.junit.Test;
-
 import ru.sysout.optional.with.Apartment;
 import ru.sysout.optional.with.Fridge;
 import ru.sysout.optional.with.Kitchen;
+
+import java.util.Optional;
+
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
 public class OptionalTest {
 
