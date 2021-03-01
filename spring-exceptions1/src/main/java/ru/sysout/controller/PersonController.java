@@ -22,9 +22,8 @@ public class PersonController {
     }
 
     @GetMapping(value = "/{personId}")
-    public Person getPerson(@PathVariable("personId") long personId) throws MyEntityNotFoundException {
-
-       return personRepository.findById(personId).orElseThrow(() -> new MyEntityNotFoundException(personId));
+    public Person getPerson(@PathVariable("personId") long personId) {
+        return personRepository.findById(personId).orElseThrow(() -> new MyEntityNotFoundException(personId));
     }
 
     @PostMapping
@@ -33,7 +32,7 @@ public class PersonController {
     }
 
     @PutMapping("/{id}")
-    public Person updatePerson(@RequestBody  Person person, @PathVariable long id)  {
+    public Person updatePerson(@RequestBody Person person, @PathVariable long id) {
         Person oldPerson = personRepository.getOne(id);
         oldPerson.setName(person.getName());
         return personRepository.save(oldPerson);
