@@ -9,7 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.sysout.model.Document;
-import ru.sysout.repository.DocumentRepository;
 
 import java.util.Arrays;
 
@@ -23,8 +22,7 @@ public class DocumentControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
-    @Autowired
-    private DocumentRepository repository;
+
     @Autowired
     private MockMvc mockMvc;
 
