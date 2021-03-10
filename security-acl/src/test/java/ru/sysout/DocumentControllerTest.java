@@ -30,7 +30,7 @@ public class DocumentControllerTest {
 
 
     @Test
-    @WithMockUser(username = "user1", authorities = { "ROLE_USER" })
+    @WithMockUser(username = "user1")
     public void user1ShouldGetDocument1() throws Exception {
 
         Document d1=new Document(1, "Document 1");
@@ -42,7 +42,7 @@ public class DocumentControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "user2", authorities = { "ROLE_USER" })
+    @WithMockUser(username = "user2")
     public void user2ShouldGetDocument2() throws Exception {
 
         Document d2=new Document(2, "Document 2");
@@ -54,7 +54,7 @@ public class DocumentControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", authorities = { "ROLE_ADMIN" })
+    @WithMockUser(username = "admin")
     public void adminShouldGetDocuments123() throws Exception {
 
         Document d1=new Document(1, "Document 1");
@@ -69,7 +69,7 @@ public class DocumentControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "user1", authorities = { "ROLE_USER" })
+    @WithMockUser(username = "user1")
     public void user1ShouldGetDocument1WithPathVariable() throws Exception {
 
         Document d1=new Document(1, "Document 1");
@@ -81,7 +81,7 @@ public class DocumentControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "user1", authorities = { "ROLE_USER" })
+    @WithMockUser(username = "user1")
     public void user1ShouldNotGetDocument2() throws Exception {
 
         mockMvc.perform(
@@ -91,7 +91,7 @@ public class DocumentControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", authorities = { "ROLE_ADMIN" })
+    @WithMockUser(username = "admin")
     public void adminShouldEditDocument() throws Exception {
 
         Document d1=new Document( 1,"Document 1 Edited");
@@ -105,7 +105,7 @@ public class DocumentControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "user1", authorities = { "ROLE_USER" })
+    @WithMockUser(username = "user1")
     public void user1ShouldNotEditDocument() throws Exception {
 
         Document d1=new Document( 1,"Document 1 Edited");
@@ -119,7 +119,7 @@ public class DocumentControllerTest {
 
 
     @Test
-    @WithMockUser(username = "admin", authorities = { "ROLE_ADMIN" })
+    @WithMockUser(authorities = { "ROLE_ADMIN" })
     public void adminShouldSetPermissionAndPostDocument() throws Exception {
 
         Document d4=new Document(4, "Document 4");
