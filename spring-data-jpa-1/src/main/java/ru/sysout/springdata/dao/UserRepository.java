@@ -1,10 +1,10 @@
-package ru.sysout.springdatajdbc.dao;
+package ru.sysout.springdata.dao;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.sysout.springdatajdbc.model.User;
+import ru.sysout.springdata.model.User;
 
 import java.util.List;
 import java.util.Optional;

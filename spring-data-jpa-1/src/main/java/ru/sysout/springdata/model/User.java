@@ -1,4 +1,4 @@
-package ru.sysout.springdatajdbc.model;
+package ru.sysout.springdata.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
