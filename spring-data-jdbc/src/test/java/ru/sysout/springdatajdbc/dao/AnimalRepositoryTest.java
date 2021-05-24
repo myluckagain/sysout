@@ -1,16 +1,14 @@
-package ru.sysout.springdatajdbc;
+package ru.sysout.springdatajdbc.dao;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.Import;
-import ru.sysout.springdatajdbc.dao.AnimalRepository;
 import ru.sysout.springdatajdbc.model.Animal;
 
 import java.util.List;
-
-@DataJdbcTest
+@JdbcTest
 @Import(AnimalRepository.class)
 class AnimalRepositoryTest {
     @Autowired
@@ -18,7 +16,7 @@ class AnimalRepositoryTest {
 
     @Test
     void givenData_whenGetOne_thenReturnsAnimal() {
-        Animal animal = dao.getById(1l);
+        Animal animal = dao.getById(1L);
         Assertions.assertEquals("cat", animal.getName());
     }
 
