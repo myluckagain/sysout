@@ -1,10 +1,9 @@
-package ru.sysout.springdatajdbc;
+package ru.sysout.springdatajdbc.dao;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
-import ru.sysout.springdatajdbc.dao.AnimalRepository;
 import ru.sysout.springdatajdbc.model.Animal;
 
 import java.util.List;
