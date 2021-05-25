@@ -5,13 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.DirtiesContext;
 import ru.sysout.springdatajdbc.model.Animal;
 
 import java.util.List;
 
 @DataJdbcTest
-//@Commit
-class AnimalRepositoryTest {
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
+class AnimalRepositoryTest1 {
     @Autowired
     private AnimalRepository dao;
 
