@@ -7,8 +7,11 @@ spring:
      url: jdbc:h2:mem:testdb
      username: sa
      password:
-     initialization-mode: always
+  sql:
+    init:
+      enabled: true
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
+

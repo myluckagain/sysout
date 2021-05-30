@@ -1,6 +1,5 @@
 package ru.sysout.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.sysout.dao.CommentRepository;
@@ -12,10 +11,13 @@ import java.util.Optional;
 
 @Service
 public class CommentService {
-    @Autowired
-    private TopicRepository topicRepository;
-    @Autowired
-    private CommentRepository commentRepository;
+    private final TopicRepository topicRepository;
+    private final CommentRepository commentRepository;
+
+    public CommentService(TopicRepository topicRepository, CommentRepository commentRepository) {
+        this.topicRepository = topicRepository;
+        this.commentRepository = commentRepository;
+    }
 
     @Transactional
     public Comment addToTopicUsingFindById(long topicId, String text) {
@@ -28,8 +30,8 @@ public class CommentService {
     }
 
     @Transactional
-    public Comment addToTopicUsingGetOne(long topicId, String text) {
-        Topic topic = topicRepository.getOne(topicId);
+    public Comment addToTopicUsingGetById(long topicId, String text) {
+        Topic topic = topicRepository.getById(topicId);
         Comment comment = new Comment();
         comment.setTopic(topic);
         comment.setText(text);

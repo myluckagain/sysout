@@ -18,7 +18,7 @@ public class CommentRepositoryTest {
     @Test
     @DisplayName("если метод FindById, то два select")
     public void givenMethod_whenFetchCommentWithTopic_thenOneSelect(){
-        Optional<Comment> comment=commentRepository.findById(-4l);
+        Optional<Comment> comment=commentRepository.findById(-4L);
         Assertions.assertTrue(comment.isPresent());
         Assertions.assertEquals("title1", comment.get().getTopic().getTitle());
     }
@@ -26,8 +26,9 @@ public class CommentRepositoryTest {
     @Test
     @DisplayName("если метод findWithJoinFetch, то один select")
     public void givenQuery_whenFetchCommentWithTopic_thenTwoSelects(){
-        Optional<Comment> comment=commentRepository.findWithJoinFetch(-4l);
+        Optional<Comment> comment=commentRepository.findWithJoinFetch(-4L);
         Assertions.assertTrue(comment.isPresent());
         Assertions.assertEquals("title1", comment.get().getTopic().getTitle());
     }
+
 }
