@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Добавление</title>
+</head>
+
+<body>
+
+<h1>Добавить</h1>
+<form th:action="@{/add}" th:method="post">
+
+        <input type="text" th:value="${id}" name="id"></input>
+        <input type="text" th:value="${text}" name="text"></input>
+
+
+    <!--csrf-токен добавить на форму-->
+    <input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
+
+        <button type="submit">Добавить документ</button>
+
+</form>
+<div th:text="${message}"></div>
+<div th:if="${document != null}" th:text="${document.getText}"></div>
+
+
+</body>
+</html>
