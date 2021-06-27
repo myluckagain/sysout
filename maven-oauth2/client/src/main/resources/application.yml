@@ -34,8 +34,5 @@ spring:
           spring:
             authorization-uri: http://auth-server:9000/oauth2/authorize
             token-uri: http://auth-server:9000/oauth2/token
-  mvc:
-    log-request-details: true
-
 messages:
   base-uri: http://localhost:8090/messages

@@ -9,7 +9,6 @@ logging:
     org.springframework.security.oauth2: INFO
 #    org.springframework.boot.autoconfigure: DEBUG
     org.springframework.web.client.RestTemplate: DEBUG
-    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
 spring:
   security:
     oauth2:
