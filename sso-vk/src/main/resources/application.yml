@@ -6,14 +6,14 @@ spring:
       client:
         registration:
           github:
-            client-id: 9fcdb33dcf2f7ed12dee
-            client-secret: 5f52705af5de9abc1bb3f91953a77a379795293b
+            client-id: your-client-id
+            client-secret: your-client-secret
           google:
-            client-id: 249411206993-0tikgskd6g2le9ma979hdufpbii3gf2j.apps.googleusercontent.com
-            client-secret: nQqywb9kFnpM4_WLYTBevvFT
+            client-id: your-client-id
+            client-secret: your-client-secret
           vk:
-            client-id: 7805850
-            client-secret: GmglNujp9jX8gnsCiy5d
+            client-id: your-client-id
+            client-secret: your-client-secret
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             #use post, as vk needs clientId and clientSecret as request params and does not accepts Basic auth
             client-authentication-method: post
