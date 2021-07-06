@@ -1,0 +1,42 @@
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: 9fcdb33dcf2f7ed12dee
+            client-secret: 5f52705af5de9abc1bb3f91953a77a379795293b
+          google:
+            client-id: 249411206993-0tikgskd6g2le9ma979hdufpbii3gf2j.apps.googleusercontent.com
+            client-secret: nQqywb9kFnpM4_WLYTBevvFT
+          vk:
+            client-id: 7805850
+            client-secret: GmglNujp9jX8gnsCiy5d
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            #use post, as vk needs clientId and clientSecret as request params and does not accepts Basic auth
+            client-authentication-method: post
+            authorization-grant-type: authorization_code
+            scope: email
+        provider:
+          vk:
+            #revoke=1 needs to always show vk dialog
+            authorization-uri: https://oauth.vk.com/authorize?revoke=1
+            token-uri: https://oauth.vk.com/access_token
+            user-info-uri: https://api.vk.com/method/users.get?v=5.52&fields=photo_max
+            user-name-attribute: first_name
+          google:
+            user-name-attribute: name
+          github:
+            user-name-attribute: login
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
+    #    org.springframework.boot.autoconfigure: DEBUG
+    org.springframework.web.client.RestTemplate: DEBUG
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
