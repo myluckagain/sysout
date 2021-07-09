@@ -1,0 +1,35 @@
+server:
+  port: 8080
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: debug
+    org.springframework.security.oauth2: INFO
+#    org.springframework.boot.autoconfigure: DEBUG
+    org.springframework.web.client.RestTemplate: DEBUG
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          keyloak:
+            client-id: messaging-client
+            client-secret: 4953cb21-7dce-43cf-831d-004495a05509
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keyloak"
+            scope: message.read,message.write
+        provider:
+          keyloak:
+            authorization-uri: http://keyloak-server:9000/auth/realms/demo/protocol/openid-connect/auth
+            token-uri: http://keyloak-server:9000/auth/realms/demo/protocol/openid-connect/token
+            user-info-uri: http://keyloak-server:9000/auth/realms/demo/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+  mvc:
+    log-request-details: true
+#url сервера ресурсов
+messages:
+  base-uri: http://localhost:8090/messages

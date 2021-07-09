@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Spring Security OAuth 2.0 Sample</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <ul>
+            <li>
+                <a href="/localmessages">Local protected message</a>
+            </li>
+            <li>
+                <a href="/remotemessages">Messages from resource server</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div th:if="${error}" class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 th:text="${error}" class="text-center"></h4>
+    </div>
+
+    <div class="panel panel-default">
+        <h4>Logged as:</h4>
+        <div th:if="${username}" th:text="${username}"></div>
+        <h4>Local message:</h4>
+        <div th:if="${message}"  th:text="${message}"></div>
+    </div>
+</div>
+</body>
+</html>

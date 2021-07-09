@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Spring Security OAuth 2.0 Sample</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" />
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <ul>
+            <li>
+                <a href="/localmessages">Local protected message</a>
+            </li>
+            <li>
+                <a href="/remotemessages">Messages from resource server</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+
+
+    <div class="panel panel-default">
+        <h4>Logged as:</h4>
+        <div th:if="${username}" th:text="${username}"></div>
+        <div th:if="${messages}" class="panel-footer">
+            <h4>Messages from Resource Server:</h4>
+            <table class="table table-condensed">
+                <tbody>
+                <tr class="row" th:each="message : ${messages}">
+                    <td th:text="${message}">message</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="/webjars/jquery/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
