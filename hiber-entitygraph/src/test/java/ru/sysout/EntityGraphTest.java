@@ -36,7 +36,6 @@ public class EntityGraphTest {
             Post post = session.find(Post.class, 1l);
         });
     }
-
     @Test
     @DisplayName("если использовать EntityGraph, загружаются images")
     public void givenEntityGraph_whenFind_thenImagesAreEager() {
@@ -47,6 +46,7 @@ public class EntityGraphTest {
 
         });
     }
+
     @Test
     @DisplayName("если создать динамически EntityGraph, загружаются tags")
     public void givenDynamicEntityGraph_whenFind_thenTagsAreEager() {
@@ -61,18 +61,35 @@ public class EntityGraphTest {
 
         });
     }
+
+
     @Test
     @DisplayName("EntityGraph c Query тоже работает")
     public void givenEntityGraph_whenQuery_thenImagesAreEager() {
         HibernateUtil.doInHibernate(session -> {
-
             EntityGraph entityGraph = session.getEntityGraph("post-entity-graph");
             Post post = session.createQuery("select p from Post p where p.id = :id", Post.class)
                     .setParameter("id", 1l)
-                    .setHint("javax.persistence.graph", entityGraph)
+                    .setHint("javax.persistence.fetchgraph", entityGraph)
                     .getSingleResult();
         });
     }
+
+    @Test
+    @DisplayName("если создать loadgraph и раскомментировать (fetch = FetchType.EAGER), загружаются tags")
+    public void givenLoadGraph_whenFind_thenTagsAreEager() {
+
+        HibernateUtil.doInHibernate(session -> {
+
+            Map<String, Object> properties = new HashMap<>();
+            EntityGraph<Post> postGraph = session.createEntityGraph(Post.class);
+           // postGraph.addAttributeNodes("images");
+            properties.put("javax.persistence.loadgraph", postGraph);
+            Post post = session.find(Post.class, 1l, properties);
+
+        });
+    }
+
 
 
 

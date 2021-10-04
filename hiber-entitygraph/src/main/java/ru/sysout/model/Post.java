@@ -29,7 +29,7 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Image> images = new ArrayList<>();
 
-    @ElementCollection
+    @ElementCollection//(fetch = FetchType.EAGER)
     private Set<String> tags = new HashSet<>();
 
     public Post(String title) {
