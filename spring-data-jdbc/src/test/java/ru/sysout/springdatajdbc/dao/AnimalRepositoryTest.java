@@ -31,4 +31,10 @@ class AnimalRepositoryTest {
         Animal animal = dao.insert(new Animal("mouse"));
         Assertions.assertEquals("mouse", animal.getName());
     }
+
+    @Test
+    void givenAnimal_whenUpdate_thenReturnsNumber() {
+        int numberOfRows = dao.update("mouse", 1l);
+        Assertions.assertEquals(1, numberOfRows);
+    }
 }

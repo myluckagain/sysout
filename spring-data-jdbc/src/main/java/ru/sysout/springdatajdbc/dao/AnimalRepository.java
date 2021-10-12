@@ -45,11 +45,12 @@ public class AnimalRepository  {
 
 
     @Transactional
-    public Animal update(Animal animal) {
+    public int update(String name, long id) {
         Map<String, Object> params = new HashMap<>();
-        params.put("name", animal.getName());
-        jdbc.update("insert into animal (name) values (:name)", params);
-        return animal;
+        params.put("name", name);
+        params.put("id", id);
+        int n= jdbc.update("update animal set name=:name where id=:id", params);
+        return n ;
     }
 
 
