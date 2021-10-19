@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.sysout.dao.HitRepository;
+import ru.sysout.dto.HitsDto;
 import ru.sysout.model.Hits;
 
 @Service
@@ -13,11 +14,9 @@ public class HitService {
     private HitRepository hitRepository;
 
     @Transactional(isolation = Isolation.READ_COMMITTED)
-    public Hits updateAndReturnCount() {
-
+    public HitsDto updateAndReturnCount() {
         hitRepository.updateCount(1l);
         Hits hits = hitRepository.getCount(1l);
-
-        return hits;
+        return HitsDto.fromHits(hits);
     }
 }

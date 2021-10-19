@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 
-//@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
