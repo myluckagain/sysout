@@ -26,6 +26,6 @@ public class AtomicTest implements Runnable {
         Thread.sleep(1000);
 
         System.out.println(atomicTest.counter);
-      
+
     }
 }
