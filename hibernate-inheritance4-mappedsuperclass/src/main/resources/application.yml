@@ -1,0 +1,9 @@
+spring:
+  datasource:
+      url: jdbc:postgresql://localhost/inherit
+      username: postgres
+      password: qqq
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
