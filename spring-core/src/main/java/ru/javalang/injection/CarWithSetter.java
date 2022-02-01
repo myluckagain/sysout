@@ -5,9 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CarWithSetter {
-    @Autowired
+
     private Engine engine;
 
+    @Autowired
     public void setEngine(Engine engine) {
         this.engine = engine;
     }
